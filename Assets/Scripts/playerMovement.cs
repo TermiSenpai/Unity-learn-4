@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class playerMovement : MonoBehaviour
 {
-    float front;
-    public float movementSpeed = 0.1f;
+    private Rigidbody playerRB;
+    private GameObject FocusPoint;
+
+    public float movementSpeed = 4f;
+    float fowardInput;
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerRB = GetComponent<Rigidbody>();
+        FocusPoint = GameObject.Find("focusPoint");
     }
 
     // Update is called once per frame
     void Update()
     {
-        front += movementSpeed * Input.GetAxis("Vertical");
-        transform.Translate(Vector3.forward * Time.deltaTime * front);
-
+        fowardInput = Input.GetAxis("Vertical");
+        playerRB.AddForce(FocusPoint.transform.forward * fowardInput * movementSpeed);
     }
 }
