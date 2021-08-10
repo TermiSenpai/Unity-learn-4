@@ -7,6 +7,7 @@ public class EnemyFolow : MonoBehaviour
     private Rigidbody enemyBall;
     private GameObject player;
 
+    public float speed = 3.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,7 @@ public class EnemyFolow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        enemyBall.AddForce(player.transform.position - transform.position);
+        Vector3 objetiveFind = (player.transform.position - transform.position).normalized;
+        enemyBall.AddForce( objetiveFind * speed);
     }
 }
