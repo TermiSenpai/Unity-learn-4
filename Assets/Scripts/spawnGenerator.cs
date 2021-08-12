@@ -6,8 +6,9 @@ public class spawnGenerator : MonoBehaviour
 {
     public GameObject enemyPrefab;
     private Vector3 position;
+    public GameObject powerUp;
 
-    private const float spawnVectorY = -1.50f;
+    private const float spawnVectorY = -1.80f;
     private float spawnVectorX;
     private float spawnVectorZ;
     private float maxRandomPosition = 10f;
@@ -20,6 +21,7 @@ public class spawnGenerator : MonoBehaviour
         position = new Vector3(spawnVectorX, spawnVectorY, spawnVectorZ);
 
         Instantiate(enemyPrefab, position, enemyPrefab.transform.rotation);
+        Instantiate(powerUp, position, powerUp.transform.rotation);
     }
 
     // Update is called once per frame
