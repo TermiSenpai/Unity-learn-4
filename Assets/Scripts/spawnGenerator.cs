@@ -16,11 +16,12 @@ public class spawnGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spawnVectorX = randomPositionGeneration(-maxRandomPosition, maxRandomPosition);
-        spawnVectorZ = randomPositionGeneration(-maxRandomPosition, maxRandomPosition);
-        position = new Vector3(spawnVectorX, spawnVectorY, spawnVectorZ);
-
+        // enemy spawn
+        position = vectorSpawnGenerator();
         Instantiate(enemyPrefab, position, enemyPrefab.transform.rotation);
+
+        //powerUp Spawn
+        position = vectorSpawnGenerator();
         Instantiate(powerUp, position, powerUp.transform.rotation);
     }
 
@@ -33,5 +34,14 @@ public class spawnGenerator : MonoBehaviour
     public float randomPositionGeneration(float min, float max)
     {
         return Random.Range(min, max);
+    }
+
+    public Vector3 vectorSpawnGenerator()
+    {
+        //random position
+        spawnVectorX = randomPositionGeneration(-maxRandomPosition, maxRandomPosition);
+        spawnVectorZ = randomPositionGeneration(-maxRandomPosition, maxRandomPosition); 
+
+        return new Vector3(spawnVectorX, spawnVectorY, spawnVectorZ);
     }
 }
