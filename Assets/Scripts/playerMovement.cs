@@ -35,9 +35,13 @@ public class playerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("enemy"))
+        if (collision.gameObject.CompareTag("enemy") && powerUpActive)
         {
-            Debug.Log($"El jugador colisionó contra {collision.gameObject} con powerup {powerUpActive}");
+            Rigidbody enemyRB = collision.gameObject.GetComponent<Rigidbody>();
+            Vector3 enemyThrow = (collision.gameObject.transform.position - transform.position);
+
+            enemyRB.AddForce(enemyThrow * 5, ForceMode.Impulse);
+            // Debug.Log($"El jugador colisionó contra {collision.gameObject} con powerup {powerUpActive}");
         }
     }
 }
