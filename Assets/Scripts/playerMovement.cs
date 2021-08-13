@@ -7,6 +7,7 @@ public class playerMovement : MonoBehaviour
     private Rigidbody playerRB;
     private GameObject FocusPoint;
     public GameObject powerUpActiveObject;
+    public GameObject gameOverUI;
 
     public bool gameOver = false;
     private float rotationSpeed = 1.0f;
@@ -39,6 +40,7 @@ public class playerMovement : MonoBehaviour
             Destroy(gameObject);
             Destroy(powerUpActiveObject);
             gameOver = true;
+            gameOverUI.gameObject.SetActive(true);
         }
 
     }
