@@ -9,6 +9,11 @@ public class sceneManager : MonoBehaviour
     {
         SceneManager.LoadScene("playGame");
     }
+    
+    public void mainMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
 
     public void exitGame()
     {
