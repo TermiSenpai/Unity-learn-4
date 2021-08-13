@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class spawnGenerator : MonoBehaviour
 {
+    private playerMovement playerMovementScript;
     public GameObject enemyPrefab;
     private Vector3 position;
     public GameObject powerUp;
 
+    private int enemyGeneration = 1;
+    private int enemyInPlatform;
     private const float spawnVectorY = -1.80f;
     private float spawnVectorX;
     private float spawnVectorZ;
@@ -16,13 +19,22 @@ public class spawnGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemyGenerator(1);
+        playerMovementScript = GameObject.Find("player").GetComponent<playerMovement>();
+        enemyGenerator(enemyGeneration);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!playerMovementScript.gameOver)
+        { 
+            enemyInPlatform = FindObjectsOfType<EnemyFolow>().Length;
+
+            if (enemyInPlatform == 0)
+            {
+                enemyGenerator(enemyGeneration++);
+            }
+        }
     }
 
     void enemyGenerator(int enemyToGenerate)
