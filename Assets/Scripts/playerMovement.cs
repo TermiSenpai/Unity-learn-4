@@ -8,6 +8,7 @@ public class playerMovement : MonoBehaviour
     private GameObject FocusPoint;
     public GameObject powerUpActiveObject;
 
+    public bool gameOver = false;
     private float rotationSpeed = 1.0f;
     public bool powerUpActive = false;
     public float movementSpeed = 4f;
@@ -22,13 +23,24 @@ public class playerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //get user input
-        fowardInput = Input.GetAxis("Vertical");
-        // add force to move the player
-        playerRB.AddForce(FocusPoint.transform.forward * fowardInput * movementSpeed);
-        // power up indicator following the player
-        powerUpActiveObject.transform.position = transform.position;
-        powerUpActiveObject.transform.Rotate(Vector3.up * rotationSpeed);
+        if (!gameOver)
+        {
+            //get user input
+            fowardInput = Input.GetAxis("Vertical");
+            // add force to move the player
+            playerRB.AddForce(FocusPoint.transform.forward * fowardInput * movementSpeed);
+            // power up indicator following the player
+            powerUpActiveObject.transform.position = transform.position;
+            powerUpActiveObject.transform.Rotate(Vector3.up * rotationSpeed);
+        }
+
+        if(transform.position.y <= -10)
+        {
+            Destroy(gameObject);
+            Destroy(powerUpActiveObject);
+            gameOver = true;
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
