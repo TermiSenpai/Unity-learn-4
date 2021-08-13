@@ -30,7 +30,14 @@ public class playerMovement : MonoBehaviour
         {
             Destroy(other.gameObject);
             powerUpActive = true;
+            StartCoroutine(PowerUpTemporizator());
         }
+    IEnumerator PowerUpTemporizator()
+    {
+        // power up temporizator
+        yield return new WaitForSeconds(10);
+        powerUpActive = false;
+        powerUpActiveObject.gameObject.SetActive(false);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -41,7 +48,7 @@ public class playerMovement : MonoBehaviour
             Vector3 enemyThrow = (collision.gameObject.transform.position - transform.position);
 
             enemyRB.AddForce(enemyThrow * 5, ForceMode.Impulse);
-            // Debug.Log($"El jugador colisionó contra {collision.gameObject} con powerup {powerUpActive}");
+            // Debug.Log($"El jugador colisionï¿½ contra {collision.gameObject} con powerup {powerUpActive}");
         }
     }
 }
