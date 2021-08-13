@@ -7,7 +7,7 @@ public class EnemyFolow : MonoBehaviour
     private Rigidbody enemyBall;
     private GameObject player;
 
-    public float speed = 3.0f;
+    private float speed = 2.0f;
     // Start is called before the first frame update
     void Start()
     {
